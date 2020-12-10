@@ -1,15 +1,36 @@
 import React from "react";
+import React, { useState, useEffect } from 'react';
 import "./App.css";
+import axios from 'axios';
+import Body from './body';
+import Header from './header';
+
 
 function App() {
-  return (
-    <div className="App">
-      <p>
-        Read through the instructions in the README.md file to build your NASA
-        app! Have fun <span role="img" aria-label='go!'>🚀</span>!
-      </p>
-    </div>
-  );
-}
+  const [data, setData] = useState({});
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.nasa.gov/planetary/apod?api_key=tS3bpBO8Kg4eL7WcNoGpBf7eNqMuFMdKxIB48rN1&date=2020-10-20`
+      )
+      .then((results) => {
+        console.log("Results from useEffect of NasaAPI", results);
+        setData(results.data)
+      })
+      .catch((err) => {
+        console.log("Error occured in useEffect of NasaAPI: ", err);
+      })
+     return ()=>{}
+  }, []);
 
+  <div className="postPage">
+  {data !== null ?
+    <Body url={data.url} explanation={data.explanation} /> : <span></span>
+  }
+  {data !== null ?
+    <Header title={data.title} /> : <span></span>
+  }
+</div>
+);
+}
 export default App;
