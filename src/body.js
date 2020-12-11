@@ -4,7 +4,7 @@ function Body(props) {
     console.log(props)
     return (
         <div id='mainBody'>
-            <img src={props.url} id ='iamgeSky' />
+            <img src={props.url} id ='imageSky' />
             <p id='bodyText'>{props.explanation}</p>
         </div>
     );

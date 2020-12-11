@@ -1,9 +1,10 @@
-import React from "react";
+
 import React, { useState, useEffect } from 'react';
 import "./App.css";
 import axios from 'axios';
-import Body from './body';
 import Header from './header';
+import Body from './body';
+
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
      return ()=>{}
   }, []);
 
+  return (
   <div className="postPage">
   {data !== null ?
     <Body url={data.url} explanation={data.explanation} /> : <span></span>
@@ -31,6 +33,6 @@ function App() {
     <Header title={data.title} /> : <span></span>
   }
 </div>
-);
+  );
 }
 export default App;
